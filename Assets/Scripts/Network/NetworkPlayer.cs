@@ -5,13 +5,13 @@ using TMPro;
 public class NetworkPlayer : NetworkBehaviour
 {
     [SerializeField] private MeshRenderer m_MeshRenderer;
-    [SerializeField] public TMP_Text Inputedname;
+    [SerializeField] public TMP_Text Textname;
     //static
-    public static NetworkPlayer Local { get; set; }
     [Header("Network Properties")]
     [Networked] public Vector3 NetworkedPosition { get; set; }
     [Networked] public Color PlayerColor { get; set; }
     [Networked] public NetworkString<_32> PlayerName { get; set; }
+    //[Networked(onChanged = nameof(onPlayerNameChanged))]
     
     public override void FixedUpdateNetwork()
     {
@@ -29,9 +29,8 @@ public class NetworkPlayer : NetworkBehaviour
     {
         if (HasInputAuthority)//client
         {
-            Local = this;
             //Name
-            RPC_SetPLayerName(PlayerPrefs.GetString("player"));
+            PlayerName = Textname.text;//inputfield
         }
         if (HasStateAuthority)//Server
         {
@@ -58,9 +57,9 @@ public class NetworkPlayer : NetworkBehaviour
         }
     }
 
-    public void RPC_SetPLayerName(string PlayerName, RpcInfo info = default ){
+    public void RPC_SetPLayerName(string name){
         if(HasInputAuthority){
-            this.name = PlayerName;
+            name = PlayerName.ToString();
         }
     }
     #endregion
@@ -75,5 +74,14 @@ public class NetworkPlayer : NetworkBehaviour
             RPC_SetPLayerColor(randColor);
         }
     }
+
+    // static void onPlayerNameChanged(Changed<NetworkPlayer> changed){
+    //     changed.Behaviour.onPlayerNameChanged();
+    // }
+
+    // private void onPlayerNameChanged(){
+    //     //Debug.Log($"Please Work: Set {PlayerName} for player {gameObject.name}" );
+    //     name.text = PlayerName.ToString();
+    // }
     #endregion
 }

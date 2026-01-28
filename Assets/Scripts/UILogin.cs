@@ -1,16 +1,23 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UILogin : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public TMP_InputField InputField;
     void Start()
     {
-        
+        if(PlayerPrefs.HasKey("Player"))
+            InputField.text = PlayerPrefs.GetString("Player");//brain no work but hope-core for this
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    //if player join store value
+    //joingame();
+    public void JoinGame(){
+        PlayerPrefs.GetString("Player", InputField.text);
+        PlayerPrefs.Save(); //:D
+
+        SceneManager.LoadScene("SampleScene");
+        SceneManager.UnloadSceneAsync("Login");
     }
 }
