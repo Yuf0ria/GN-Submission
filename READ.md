@@ -1,6 +1,6 @@
 This activity used the following SDKs:
 - Phothon Fusion
-- PlayFab SDKs/Editor Extension
+- parallelsync
 
 |Last Update Time of Document: 5:45pm, Wednesday, January 28,2026|
 

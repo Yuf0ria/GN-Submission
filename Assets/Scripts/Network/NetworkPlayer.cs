@@ -1,9 +1,13 @@
 using Fusion;
 using UnityEngine;
+using TMPro;
 
 public class NetworkPlayer : NetworkBehaviour
 {
     [SerializeField] private MeshRenderer m_MeshRenderer;
+    [SerializeField] public TMP_Text Inputedname;
+    //static
+    public static NetworkPlayer Local { get; set; }
     [Header("Network Properties")]
     [Networked] public Vector3 NetworkedPosition { get; set; }
     [Networked] public Color PlayerColor { get; set; }
@@ -25,7 +29,9 @@ public class NetworkPlayer : NetworkBehaviour
     {
         if (HasInputAuthority)//client
         {
-
+            Local = this;
+            //Name
+            RPC_SetPLayerName(PlayerPrefs.GetString("player"));
         }
         if (HasStateAuthority)//Server
         {
@@ -49,6 +55,12 @@ public class NetworkPlayer : NetworkBehaviour
         if (HasStateAuthority)
         {
             this.PlayerColor = color;
+        }
+    }
+
+    public void RPC_SetPLayerName(string PlayerName, RpcInfo info = default ){
+        if(HasInputAuthority){
+            this.name = PlayerName;
         }
     }
     #endregion
