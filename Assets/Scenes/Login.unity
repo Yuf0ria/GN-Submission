@@ -538,12 +538,12 @@ MonoBehaviour:
   materialsDropdown: {fileID: 1361359834}
   panel: {fileID: 1558195451}
   button: {fileID: 648727932}
+  playerPrefab: {fileID: 844292719125231535, guid: 7d8c31463e01d84179a00a1a71a19e90, type: 3}
   materials:
   - {fileID: 2100000, guid: 22b61c65f32902b68b40f71fd593db8b, type: 2}
   - {fileID: 2100000, guid: 82055c944b12dbb2ca44a2be77464721, type: 2}
   - {fileID: 2100000, guid: 86df33767efaa2e159c49ea5f8aeef8e, type: 2}
   - {fileID: 2100000, guid: 0d6319d9a1ce2345ba1444d06e884b37, type: 2}
-  playerPrefab: {fileID: 844292719125231535, guid: 7d8c31463e01d84179a00a1a71a19e90, type: 3}
 --- !u!1 &329973028
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2756ce1cc26b15f419eba29d0ae34c69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Network_Scripts.NetworkSessionManager
-  gameMode: 6
+  gameMode: 2
   sessionName: TestRoom
 --- !u!1 &389672623
 GameObject:
