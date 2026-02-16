@@ -499,8 +499,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 253798995}
+  - component: {fileID: 253798996}
   m_Layer: 0
-  m_Name: ==Managers==
+  m_Name: ==Player Manager==
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -518,11 +519,77 @@ Transform:
   m_LocalPosition: {x: 972.8527, y: 456.05807, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 812889892}
-  - {fileID: 1715264859}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &253798996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253798994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3abd3e6a6273817e9ace93e09a0778fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::playerSpawnManager
+  inputField: {fileID: 1821133894}
+  materialsDropdown: {fileID: 1361359834}
+  panel: {fileID: 1558195451}
+  button: {fileID: 648727932}
+  playerPrefab: {fileID: 844292719125231535, guid: 7d8c31463e01d84179a00a1a71a19e90, type: 3}
+  materials:
+  - {fileID: 2100000, guid: 22b61c65f32902b68b40f71fd593db8b, type: 2}
+  - {fileID: 2100000, guid: 82055c944b12dbb2ca44a2be77464721, type: 2}
+  - {fileID: 2100000, guid: 86df33767efaa2e159c49ea5f8aeef8e, type: 2}
+  - {fileID: 2100000, guid: 0d6319d9a1ce2345ba1444d06e884b37, type: 2}
+--- !u!1 &329973028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 329973029}
+  - component: {fileID: 329973030}
+  m_Layer: 0
+  m_Name: ==Session Manager==
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &329973029
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329973028}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 298.58054, y: 863.1855, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &329973030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329973028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2756ce1cc26b15f419eba29d0ae34c69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Network_Scripts.NetworkSessionManager
+  gameMode: 2
+  sessionName: TestRoom
 --- !u!1 &389672623
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,73 +1043,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648727930}
   m_CullTransparentMesh: 1
---- !u!1 &812889890
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 812889892}
-  - component: {fileID: 812889894}
-  - component: {fileID: 812889893}
-  m_Layer: 0
-  m_Name: Input Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &812889892
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 812889890}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.852722, y: 83.941925, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 253798995}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &812889893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 812889890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Fusion.Runtime.dll::Fusion.NetworkObject
-  SortKey: 965780355
-  ObjectInterest: 1
-  Flags: 262145
-  NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 812889894}
-  ForceRemoteRenderTimeframe: 0
---- !u!114 &812889894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 812889890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2d62b06f96fdb253b84ff43f0da302e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InputfieldManagerScript
-  playerHandler: {fileID: 0}
-  btn: {fileID: 648727932}
-  panel: {fileID: 1558195451}
 --- !u!1 &873839871
 GameObject:
   m_ObjectHideFlags: 0
@@ -2421,73 +2421,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582193092}
   m_CullTransparentMesh: 1
---- !u!1 &1715264858
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1715264859}
-  - component: {fileID: 1715264861}
-  - component: {fileID: 1715264860}
-  m_Layer: 0
-  m_Name: Dropdown Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1715264859
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1715264858}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.852722, y: 83.941925, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 253798995}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1715264860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1715264858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Fusion.Runtime.dll::Fusion.NetworkObject
-  SortKey: 3480625695
-  ObjectInterest: 1
-  Flags: 262145
-  NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 1715264861}
-  ForceRemoteRenderTimeframe: 0
---- !u!114 &1715264861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1715264858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2d62b06f96fdb253b84ff43f0da302e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InputfieldManagerScript
-  playerHandler: {fileID: 0}
-  btn: {fileID: 648727932}
-  panel: {fileID: 1558195451}
 --- !u!1 &1821133892
 GameObject:
   m_ObjectHideFlags: 0
@@ -2972,3 +2905,4 @@ SceneRoots:
   - {fileID: 562930779}
   - {fileID: 253798995}
   - {fileID: 910905536}
+  - {fileID: 329973029}
