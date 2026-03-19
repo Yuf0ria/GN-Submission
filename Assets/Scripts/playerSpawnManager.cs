@@ -6,17 +6,17 @@ using UnityEngine.UI;
 
 public class PlayerSpawnManager : MonoBehaviour
 {
-    #region Serialized Fields 
-        //privates
-        //canvas
-        [SerializeField] private TMP_InputField inputField;
-        [SerializeField] public TMP_Dropdown materialsDropdown; 
-        [SerializeField] private GameObject panel; 
-        [SerializeField] private Button button;
-        //player
-        [SerializeField] private NetworkObject playerPrefab;
-        //public
-        [SerializeField] public Material[] materials; //mats for dropdown
+    #region Serialized Fields
+    //privates
+    //canvas
+    [SerializeField] private TMP_InputField inputField;
+    [SerializeField] public TMP_Dropdown materialsDropdown;
+    [SerializeField] private GameObject panel;
+    [SerializeField] private Button button;
+    //player
+    [SerializeField] private NetworkObject playerPrefab;
+    //public
+    [SerializeField] public Material[] materials; //mats for dropdown AND for PlayerCustomization to reference
     #endregion
 
     private void Start()
@@ -29,7 +29,7 @@ public class PlayerSpawnManager : MonoBehaviour
             //disabled to make the spawn of the player appear above the plane
             button.interactable = false;
             button.onClick.AddListener(OnButtonClick);
-        } 
+        }
         else Debug.LogError("button is empty!");
         //and if session manager is not null
         if (NetworkSessionManager.Instance != null)
@@ -39,13 +39,13 @@ public class PlayerSpawnManager : MonoBehaviour
             else NetworkSessionManager.Instance.OnSessionStarted += OnSessionReady;
         } else Debug.LogError("No session manager at the scene");
     }
-    
+
     private void OnSessionReady()
     {
         Debug.Log("Session is ready!, setting btn to true");
         button.interactable = true;
     }
-    
+
     private void DropdownOptions()
     {
         Debug.Log("Total no. of Mats: " + materials.Length);
@@ -54,18 +54,25 @@ public class PlayerSpawnManager : MonoBehaviour
             materialsDropdown.options.Add(new TMP_Dropdown.OptionData(mats.name));
         materialsDropdown.RefreshShownValue();
     }
-    
+
     private void OnButtonClick()
     {
         //adding a debug because spawning keeps on failing
         if (NetworkSessionManager.Instance == null)
+        {
             Debug.LogError("Session is NULL!");
+            return;
+        }
+
         // Check Runner
         NetworkRunner runner = NetworkSessionManager.Instance.Runner;
         if (runner == null)
+        {
             Debug.LogError("Runner is NULL!");
+            return;
+        }
         else Debug.Log("✓ Runner exists");
-        
+
         // Check if running
         if (!runner.IsRunning)
         {
@@ -76,35 +83,43 @@ public class PlayerSpawnManager : MonoBehaviour
         }
         //returns all true
         Debug.Log($"✓ Runner is running (IsServer={runner.IsServer}, IsClient={runner.IsClient})");
-        
+
         //Check prefab
         if (playerPrefab == null)
+        {
             Debug.LogError("no player prefab on the inspector");
+            return;
+        }
         else Debug.Log($"✓ Prefab assigned: {playerPrefab.name}");
-        
+
         //text to string
         string playerName = inputField.text;
         int materialDropdownIndex = materialsDropdown.value;
-        
+
         Debug.Log($"Vector3 Position: {playerPrefab.transform.position}");
-        
+
         try
         {
             NetworkObject player = runner.Spawn(
                 playerPrefab,
                 new Vector3(0, 1, 0),
-                Quaternion.identity,
-                runner.LocalPlayer
+                                                Quaternion.identity,
+                                                runner.LocalPlayer
             );
-            
+
             if (player == null)
+            {
                 Debug.LogError("spawn returned null");
+                return;
+            }
             else Debug.Log($"Player is spawned: {player.name} at {player.transform.position}");
-            
+
             PlayerCustomization customization = player.GetComponent<PlayerCustomization>();
-            
+
             if (customization != null)
             {
+                // PlayerCustomization will automatically fetch materials in Awake()
+                // Just set the player info
                 customization.InsPlayerInfo(playerName, materialDropdownIndex);
                 Debug.Log($"Customization applied: {playerName}, Material Index: {materialDropdownIndex}");
             }
@@ -112,7 +127,7 @@ public class PlayerSpawnManager : MonoBehaviour
             {
                 Debug.LogWarning("⚠️ PlayerCustomization component not found on player!");
             }
-                
+
             panel.SetActive(false);
             Debug.Log("✅ Panel hidden, spawn complete!");
         }
@@ -122,7 +137,7 @@ public class PlayerSpawnManager : MonoBehaviour
             Debug.LogError($"Stack trace: {e.StackTrace}");
         }
     }
-    
+
     private void OnDestroy()
     {
         // Unsubscribe from event
@@ -130,7 +145,7 @@ public class PlayerSpawnManager : MonoBehaviour
         {
             NetworkSessionManager.Instance.OnSessionStarted -= OnSessionReady;
         }
-        
+
         if (button != null)
         {
             button.onClick.RemoveListener(OnButtonClick);
